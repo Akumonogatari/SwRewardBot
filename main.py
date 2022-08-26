@@ -10,6 +10,9 @@ bot = commands.Bot(command_prefix= "*", description= "Bot for summoner's war rew
 async def on_ready():
     print("Ready")
 
+@bot.command()
+async def ping(ctx):
+    await ctx.send("pong")
 
 @bot.command()
 async def code(ctx):
