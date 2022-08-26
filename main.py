@@ -82,5 +82,5 @@ def actualisation():
         dic[name] = rec
 
 actualisation()
-bot.run(os.environ[TOKEN])
+bot.run(os.environ['TOKEN'])
 
