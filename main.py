@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from urllib.request import Request, urlopen
+import os
 
 intent = discord.Intents().all()
 bot = commands.Bot(command_prefix= "*", description= "Bot for summoner's war rewards",intents=intent)
@@ -81,5 +82,5 @@ def actualisation():
         debut =  web.find('Created',b)
         dic[name] = rec
 actualisation()
-bot.run("TOKEN")
+bot.run(os.environ["TOKEN"])
 
