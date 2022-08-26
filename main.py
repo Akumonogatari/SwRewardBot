@@ -25,7 +25,7 @@ async def code(ctx):
         message += f"{key}  -> "
         for rec in dic[key]:
             message += f"x {rec[0]} {rec[1]}, "
-        message += f"lien IOS : http://withhive.me/313/{key}\n"
+        message += f"lien IOS : <http://withhive.me/313/{key}>\n"
     if nb_validCode == 0:
         message = "Il n'y malheureusement pas de code valide pour le moment essaie plus tard..."
 
