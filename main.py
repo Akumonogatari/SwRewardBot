@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from urllib.request import Request, urlopen
-import os
 
 intent = discord.Intents().all()
 bot = commands.Bot(command_prefix= "*", description= "Bot for summoner's war rewards",intents=intent)
@@ -9,10 +8,7 @@ bot = commands.Bot(command_prefix= "*", description= "Bot for summoner's war rew
 @bot.event
 async def on_ready():
     print("Ready")
-    
-@bot.command()
-async def ping(ctx):
-    await ctx.send("pong")
+
 
 @bot.command()
 async def code(ctx):
@@ -22,10 +18,10 @@ async def code(ctx):
         message = f"Il y a actuellement {nb_validCode} code valide qui est : \n"
 
     for key in dic :
-        message += f"{key} +  -> "
+        message += f"{key}  -> "
         for rec in dic[key]:
             message += f"x {rec[0]} {rec[1]}, "
-        message += f"lien IOS : <http://withhive.me/313/{key}>\n"
+        message += f"lien IOS : http://withhive.me/313/{key}\n"
     if nb_validCode == 0:
         message = "Il n'y malheureusement pas de code valide pour le moment essaie plus tard..."
 
@@ -45,7 +41,9 @@ def actualisation():
     req = Request('https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=0r_X6Mr_qpxIuYfbxaLx3M4BnPx_zeZ2PgcCMAD9QuuFTlvE9e-HbCTxt0SvYCvmvasDeS1Uea3NJq-bH769QRYfKCZ84Y4mWGHpztVtFULbDvBrS4Kr6qixxjiAvDqJs7DH85SJBh0&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe%2FParis%3B%2B0200&results_per_page=50', headers={'User-Agent': 'Mozilla/5.0'})
     webpage = urlopen(req,timeout=10).read()
     web = str(webpage)
-
+    f= open("page3.json","w")
+    f.write(web)
+    f.close()
 
     dic = {}
 
@@ -64,7 +62,7 @@ def actualisation():
         rec=[]
         start=a
         while start < web.find("verified",a):   #recherche des récompenses
-            q =  web.find('Quantity',start)     #recherche de la quantité
+            q = web.find('Quantity',start-100)     #recherche de la quantité
             b = web.find('"',q+11)
             quant=""                              
             for i in range(q+11,b):
@@ -76,11 +74,12 @@ def actualisation():
             recName=""                              
             for i in range(lab2+9,b):
                 recName += web[i]
-            start = web.find('"Label":',b)
+            start = web.find('Quantity',b)
             rec.append((quant,recName))
-        debut = start
-        dic[name] = rec
 
+
+        debut =  web.find('Created',b)
+        dic[name] = rec
 actualisation()
-bot.run(os.environ['TOKEN'])
+bot.run("TOKEN")
 
