@@ -10,34 +10,6 @@ bot = commands.Bot(command_prefix= "*", description= "Bot for summoner's war rew
 async def on_ready():
     print("Ready")
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send("pong")
-
-@bot.command()
-async def code(ctx):
-    actualisation()
-    message = f"Il y a actuellement {nb_validCode} codes valides qui sont : \n"
-    if nb_validCode == 1:
-        message = f"Il y a actuellement {nb_validCode} code valide qui est : \n"
-
-    for key in dic :
-        message += f"{key}  -> "
-        for rec in dic[key]:
-            message += f"x {rec[0]} {rec[1]}, "
-        message += f"lien IOS : <http://withhive.me/313/{key}>\n"
-    if nb_validCode == 0:
-        message = "Il n'y malheureusement pas de code valide pour le moment essaie plus tard..."
-
-    await ctx.send(message)
-
-
-@bot.command()
-async def actu(ctx):
-    actualisation()
-    await ctx.send("Le bot a actualisé sa liste. *code pour voir les codes coupons dispo !")
-
-
 def actualisation():
     global nb_validCode
     global dic
@@ -84,6 +56,36 @@ def actualisation():
 
         debut =  web.find('Created',b)
         dic[name] = rec
+        
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send("pong")
+
+@bot.command()
+async def code(ctx):
+    actualisation()
+    message = f"Il y a actuellement {nb_validCode} codes valides qui sont : \n"
+    if nb_validCode == 1:
+        message = f"Il y a actuellement {nb_validCode} code valide qui est : \n"
+
+    for key in dic :
+        message += f"{key}  -> "
+        for rec in dic[key]:
+            message += f"x {rec[0]} {rec[1]}, "
+        message += f"lien IOS : <http://withhive.me/313/{key}>\n"
+    if nb_validCode == 0:
+        message = "Il n'y malheureusement pas de code valide pour le moment essaie plus tard..."
+
+    await ctx.send(message)
+
+
+@bot.command()
+async def actu(ctx):
+    actualisation()
+    await ctx.send("Le bot a actualisé sa liste. *code pour voir les codes coupons dispo !")
+        
+        
 actualisation()
 bot.run(os.environ["TOKEN"])
 
