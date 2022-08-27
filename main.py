@@ -16,7 +16,7 @@ async def ping(ctx):
 
 @bot.command()
 async def code(ctx):
-    
+    actualisation()
     message = f"Il y a actuellement {nb_validCode} codes valides qui sont : \n"
     if nb_validCode == 1:
         message = f"Il y a actuellement {nb_validCode} code valide qui est : \n"
