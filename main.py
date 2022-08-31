@@ -55,7 +55,6 @@ class MyClient(commands.Bot):
             await channel.send(message)
 
         nb_validCode,dic = temp_nb,temp
-        print("hello")
 
     @ncode.before_loop
     async def before_my_task(self):
