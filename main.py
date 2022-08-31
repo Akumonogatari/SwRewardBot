@@ -51,7 +51,13 @@ async def ncode(ctx):
         for i in new_dic :
             a = i
             b= new_dic[i]
-        message = f"Il y a un nouveau code : {a} -> x {b[0]} {b[1]}, lien IOS : <http://withhive.me/313/{a}>"
+        message = f"Il y a un nouveau code : {a} -> "
+
+        for i in range(len(b)):
+            message += f"x {b[i][0]} {b[i][1]},"
+
+        message += f" lien IOS : <http://withhive.me/313/{a}>"
+        await ctx.send(message)
     else :
         message = f"Il y a {new_nb_validCode} nouveaux codes valides qui sont : \n"        
         for key in new_dic :
