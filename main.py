@@ -24,7 +24,7 @@ class MyClient(commands.Bot):
 
     @tasks.loop(seconds=2)  # task runs every 60 seconds
     async def ncode(self):
-        channel = self.get_channel(739595329434943630)  # channel ID goes here
+        channel = self.get_channel(1012427448610201661)  # channel ID goes here
         global nb_validCode,dic
         new_nb_validCode,new_dic = actualisation()
         temp,temp_nb = new_dic.copy(),new_nb_validCode
@@ -37,7 +37,7 @@ class MyClient(commands.Bot):
             for i in new_dic :
                 a = i
                 b= new_dic[i]
-            message = f"Il y a un nouveau code : {a} -> "
+            message = f"<@&739594402967715981>\nIl y a un nouveau code : {a} -> "
 
             for i in range(len(b)):
                 message += f"x {b[i][0]} {b[i][1]},"
@@ -46,7 +46,7 @@ class MyClient(commands.Bot):
             await channel.send(message)
             
         elif new_nb_validCode > 1:
-            message = f"Il y a {new_nb_validCode} nouveaux codes valides qui sont : \n"        
+            message = f"<@&739594402967715981>\nIl y a {new_nb_validCode} nouveaux codes valides qui sont : \n"        
             for key in new_dic :
                 message += f"{key}  -> "
                 for rec in new_dic[key]:
@@ -55,6 +55,7 @@ class MyClient(commands.Bot):
             await channel.send(message)
 
         nb_validCode,dic = temp_nb,temp
+        print("hello")
 
     @ncode.before_loop
     async def before_my_task(self):
@@ -68,10 +69,7 @@ client = MyClient(command_prefix= "*", description= "Bot for summoner's war rewa
 async def ping(ctx):    
     await ctx.send("pong")
 
-@client.command()
-async def ncode(ctx):    
-    await ctx.send("La commande ncode n'existe plus le bot s'actualise tout seul maintenant !")
-    
+
 @client.command()
 async def code(ctx):
     global nb_validCode,dic
