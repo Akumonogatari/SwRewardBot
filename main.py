@@ -22,7 +22,7 @@ class MyClient(commands.Bot):
         print(f'Logged in as {self.user} (ID: {self.user.id})')
         print('------')
 
-    @tasks.loop(seconds=2)  # task runs every 60 seconds
+    @tasks.loop(seconds=60)  # task runs every 60 seconds
     async def ncode(self):
         channel = self.get_channel(1012427448610201661)  # channel ID goes here
         global nb_validCode,dic
@@ -55,6 +55,7 @@ class MyClient(commands.Bot):
             await channel.send(message)
 
         nb_validCode,dic = temp_nb,temp
+        print("hello")
 
     @ncode.before_loop
     async def before_my_task(self):
@@ -68,6 +69,9 @@ client = MyClient(command_prefix= "*", description= "Bot for summoner's war rewa
 async def ping(ctx):    
     await ctx.send("pong")
 
+@client.command()
+async def ncode(ctx):    
+    await ctx.send("La commande ncode n'existe plus le bot s'actualise tout seul maintenant !")
 
 @client.command()
 async def code(ctx):
