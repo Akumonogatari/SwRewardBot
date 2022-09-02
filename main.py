@@ -24,7 +24,7 @@ class MyClient(commands.Bot):
 
     @tasks.loop(seconds=60)  # task runs every 60 seconds
     async def ncode(self):
-        channel = self.get_channel(1012427448610201661)  # channel ID goes here
+        channel = self.get_channel(739595329434943630)  # channel ID goes here
         global nb_validCode,dic
         new_nb_validCode,new_dic = actualisation()
         temp,temp_nb = new_dic.copy(),new_nb_validCode
