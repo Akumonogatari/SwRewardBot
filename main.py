@@ -1,3 +1,4 @@
+from curses import use_default_colors
 from discord.ext import tasks
 import discord
 from discord.ext import commands
@@ -27,11 +28,24 @@ class MyClient(commands.Bot):
         channel = self.get_channel(739595329434943630)  # channel ID goes here
         global nb_validCode,dic
         new_nb_validCode,new_dic = actualisation()
+        global used
+
         temp,temp_nb = new_dic.copy(),new_nb_validCode
         for key in temp:
             if key in dic :
                 new_dic.pop(key)
                 new_nb_validCode -=1
+
+        for i in new_nb_validCode :
+            if i in used :
+                new_dic.pop(key)
+                new_nb_validCode -=1
+            else :
+                used.append[i]
+                while len(used) > 50:
+                    used.pop(0)
+
+
 
         if new_nb_validCode == 1:
             for i in new_dic :
@@ -89,7 +103,8 @@ async def code(ctx):
         message = "Il n'y malheureusement pas de code valide pour le moment essaie plus tard..."
 
     await ctx.send(message)
-        
+
+used = []
 
 nb_validCode,dic = actualisation()
 client.run(os.environ["TOKEN"])
