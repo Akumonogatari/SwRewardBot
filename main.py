@@ -36,7 +36,7 @@ class MyClient(commands.Bot):
                 new_dic.pop(key)
                 new_nb_validCode -=1
 
-        for i in new_nb_validCode :
+        for i in new_dic :
             if i in used :
                 new_dic.pop(key)
                 new_nb_validCode -=1
