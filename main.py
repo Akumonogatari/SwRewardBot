@@ -38,7 +38,7 @@ class MyClient(commands.Bot):
 
         for i in new_dic :
             if i in used :
-                new_dic.pop(key)
+                new_dic.pop(i)
                 new_nb_validCode -=1
             else :
                 used.append[i]
