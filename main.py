@@ -42,7 +42,7 @@ class MyClient(commands.Bot):
                 new_dic.pop(i)
                 new_nb_validCode -=1
             else :
-                used.append[i]
+                used.append(i)
                 while len(used) > 50:
                     used.pop(0)
 
