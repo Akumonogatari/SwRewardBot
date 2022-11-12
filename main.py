@@ -44,7 +44,7 @@ class MyClient(commands.Bot):
                     used.pop(0)
         for i in used :
             if i in new_dic:
-                newdic.pop(i)
+                new_dic.pop(i)
                 new_nb_validCode -= 1
 
 
