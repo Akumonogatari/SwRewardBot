@@ -38,14 +38,14 @@ class MyClient(commands.Bot):
                 new_nb_validCode -=1
 
         for i in new_dic :
-            if i in used :
-                new_dic.pop(i)
-                new_nb_validCode -=1
-            else :
+            if not(i in used):
                 used.append(i)
                 while len(used) > 50:
                     used.pop(0)
-
+        for i in used :
+            if i in new_dic:
+                newdic.pop(i)
+                new_nb_validCode -= 1
 
 
         if new_nb_validCode == 1:
