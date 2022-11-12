@@ -5,6 +5,7 @@ from discord.ext import commands
 from urllib.request import Request, urlopen
 import os
 from actualisation import *
+from usecode import *
 import time
  
 
@@ -58,6 +59,7 @@ class MyClient(commands.Bot):
 
             message += f" lien IOS : <http://withhive.me/313/{a}>"
             await channel.send(message)
+            use_code("europe","OverEnder",a)
             
         elif new_nb_validCode > 1:
             message = f"<@&739594402967715981>\nIl y a {new_nb_validCode} nouveaux codes valides qui sont : \n"        
@@ -66,6 +68,7 @@ class MyClient(commands.Bot):
                 for rec in new_dic[key]:
                     message += f"x {rec[0]} {rec[1]}, "
                 message += f"lien IOS : <http://withhive.me/313/{key}>\n"
+                use_code("europe","OverEnder",key)
             await channel.send(message)
 
         nb_validCode,dic = temp_nb,temp
